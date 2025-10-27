@@ -1,5 +1,6 @@
 package es.daw.productoapirest.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +18,9 @@ public class ProductoDTO {
     // pendiente anotación con expresión regular 3digitos seguidos de una letra [0-9]{3}[a-z]{1}
     @Size(min = 4, max = 4, message = "El código debe tener exactamente 4 caracteres")
     private String codigo;
+
+    //SOLO SE USA ESTA PROPIEDAD AL CREAR UN PRODUCTO NO SE DEVUELVE AL LISTADO
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Integer codigoFabricante;
 
 }

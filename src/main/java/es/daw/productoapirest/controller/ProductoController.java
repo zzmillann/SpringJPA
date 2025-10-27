@@ -68,9 +68,21 @@ public class ProductoController {
 
     @DeleteMapping("/{codigo}")
     public ResponseEntity<Void> delete(@PathVariable String codigo) {
-        //productoService.delete(codigo);
-        return null;
+       if(productoService.deleteByCodigo(codigo)){
+           return ResponseEntity.ok().build(); //devuelve un 204 que ha ido ... OK
+       }
+       //lanzar excepcion propia Product otFoundException
+        //El mensaje el producto
+       return ResponseEntity.notFound().build(); //devuelve un 404
     }
 
+
+    @GetMapping("/parse-int")
+    public String parseInt(@RequestParam(name="numero", defaultValue = "666")String number){
+
+
+        int parsenumber = Integer.parseInt(number);
+        return "Parsed number: " + parsenumber;
+    }
 
 }

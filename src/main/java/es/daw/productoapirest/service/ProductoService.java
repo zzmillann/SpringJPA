@@ -74,7 +74,17 @@ public class ProductoService {
     }
 
     // PENDIENTE!!!
-    public void delete(){
+    public boolean deleteByCodigo(String codigo){
+
+        Optional<Producto> productoEntity = productoRepository.findByCodigo(codigo);
+
+        if(productoEntity.isPresent()){
+            productoRepository.deleteById(productoEntity.get().getId());
+            //devolver un 204 si esta ok
+            return true;
+        }
+
+    return false; //devolver un 404 si ha ido mal
 
     }
 
